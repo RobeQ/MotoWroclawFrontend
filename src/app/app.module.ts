@@ -9,7 +9,14 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthService } from './services/auth.service';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: '**', component: NotFoundComponent }
+]
 
 @NgModule({
   declarations: [
@@ -25,12 +32,7 @@ import { RouterModule } from '@angular/router';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
-      { path: '**', component: NotFoundComponent }
-    ])
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     AuthService
