@@ -1,14 +1,35 @@
 <form class="form-signin" #f="ngForm" (ngSubmit)="register(f.value)">
     <h2 class="form-signin-heading">Please register</h2>
-    <div *ngIf="differentPasswords" class="alert alert-danger">Passwords need to be exactly the same</div>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" name="email" ngModel class="form-control" placeholder="Email address" required
+    <label for="inputLogin" class="sr-only">Login</label>
+    <input id="inputLogin" name="Login" #Login="ngModel" ngModel class="form-control" placeholder="Login" required
         autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" name="password" ngModel class="form-control" placeholder="Password"
+    <div class="alert alert-danger" *ngIf="Login.touched && !Login.valid">Login is
+        required</div>
+    <label for="inputFirstName" class="sr-only">First Name</label>
+    <input id="inputFirstName" name="FirstName" #FirstName="ngModel" ngModel class="form-control"
+        placeholder="First Name" required>
+    <div class="alert alert-danger" *ngIf="FirstName.touched && !FirstName.valid">First Name is required</div>
+    <label for="inputSurname" class="sr-only">Surname</label>
+    <input id="inputSurname" name="Surname" #Surname="ngModel" ngModel class="form-control" placeholder="Surname"
         required>
-    <label for="inputConfirmPassword" class="sr-only">Confirm password</label>
-    <input type="password" id="inputConfirmPassword" name="password" ngModel class="form-control"
-        placeholder="Confirm password" required>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    <div class="alert alert-danger" *ngIf="Surname.touched && !Surname.valid">Surname is required</div>
+    <label for="inputPhoneNumber" class="sr-only">Phone Number</label>
+    <input id="inputPhoneNumber" name="PhoneNumber" #PhoneNumber="ngModel" ngModel class="form-control"
+        placeholder="Phone Number" required>
+    <div class="alert alert-danger" *ngIf="PhoneNumber.touched && !PhoneNumber.valid">Phone Number is required</div>
+    <label for="inputEmail" class="sr-only">Email Address</label>
+    <input type="email" id="inputEmail" name="EmailAddress" #EmailAddress="ngModel" ngModel class="form-control"
+        placeholder="Email Address" required>
+    <div class="alert alert-danger" *ngIf="EmailAddress.touched && !EmailAddress.valid">Email is required</div>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" name="PasswordHash" #PasswordHash="ngModel" ngModel class="form-control"
+        placeholder="Password" required>
+    <div class="alert alert-danger" *ngIf="PasswordHash.touched && !PasswordHash.valid">Password is required</div>
+    <label for="inputConfirmPassword" class="sr-only">Confirm Password</label>
+    <input type="password" id="inputConfirmPassword" name="confirmPassword" #confirmPassword="ngModel" ngModel
+        class="form-control" placeholder="Confirm Password" required>
+    <div class="alert alert-danger" *ngIf="confirmPassword.touched && !confirmPassword.valid">Confirm Password is
+        required</div>
+    <div *ngIf="differentPasswords" class="alert alert-danger">Passwords need to be exactly the same</div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!f.valid">Register</button>
 </form>

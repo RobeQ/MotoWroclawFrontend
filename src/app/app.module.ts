@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthService } from './services/auth.service';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { RegisterService } from './services/register.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -32,10 +34,12 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    RegisterService
   ],
   bootstrap: [AppComponent]
 })
